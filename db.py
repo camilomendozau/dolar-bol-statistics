@@ -48,19 +48,7 @@ class Database:
          except(Exception) as error:
             print(error)
          return response 
-         
-     
-     def getClientes(self):
-         try:
-            cur = self.conexion.cursor()      
-            query = f"""SELECT public."getclientes"()"""
-            cur.execute(query)
-            response = cur.fetchall() 
-            print(len(response[0][0]))
-            cur.close()
-         except(Exception) as error:
-            print(error)
-         return response[0]               
+                      
             
    #   def verificarLogin(self,username:str,psw:str):
    #        try:    
@@ -93,10 +81,10 @@ class Database:
    #          print(error)
    #        return response  
      
-     def insertNewVendedor(self,firstName:str,lastName:str,carnetIdentidad:str):
+     def insertNewState(self,timestamp,compra,venta):
           try:                
             cur = self.conexion.cursor()         
-            query = f"""SELECT public."insertNewVendedor"('{firstName}','{lastName}','{carnetIdentidad}')"""
+            query = f"""INSERT INTO public.estado(fechahora,compra,venta)VALUES({timestamp},{compra},{venta})"""
             cur.execute(query)
             self.conexion.commit()
             response = cur.fetchone()
@@ -107,6 +95,8 @@ class Database:
           return (response)   
 
 DB = Database()     
+
+DB.insertNewState('2024-06-23T14:56:59.774Z',10.2,10.5)
 DB.getEstados()
 #DB.getUnidadesMedida()
 #DB.getProductos()

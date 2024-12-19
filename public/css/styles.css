@@ -1,0 +1,25 @@
+body{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+}
+
+main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(22, 21, 21, 0.815);
+}
+.price-numeral-grafic{
+    border: 2px rgb(168, 9, 9) solid;
+    width: 80%;
+    height: auto;
+}
+.price-tendense-grafic{
+    border: 2px green groove;
+    width: 90%;
+    height: 60vh;
+}

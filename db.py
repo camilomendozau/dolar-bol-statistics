@@ -25,9 +25,6 @@ class Database:
             print(error)
       
 
-     def getConexion(self):
-         return self.conexion
-
      def closeConexion(self):
          if self.conexion is not None:
                 self.conexion.close()
@@ -35,10 +32,9 @@ class Database:
 
      def getEstados(self):
          try:
-            #response = ''
+            response = ''
             cur = self.conexion.cursor()      
-            query = "SELECT * FROM public.estado"
-            cur.execute(query)
+            cur.execute("SELECT * FROM public.estado")
             response = cur.fetchall() 
             if len(response) > 0:
                print(response)
@@ -82,7 +78,7 @@ class Database:
    #        return response  
      
      def insertNewState(self,timestamp,compra,venta):
-          try:                
+         try:                
             cur = self.conexion.cursor()         
             query = f"""INSERT INTO public.estado(fechahora,compra,venta)VALUES('{timestamp}',{compra},{venta})"""
             cur.execute(query)
@@ -90,13 +86,12 @@ class Database:
             response = cur.fetchone()
             print(response)
             cur.close()
-          except(Exception) as error:
+         except(Exception) as error:
               print(error)  
-          return response   
+          #return response   
 
 DB = Database()     
-
-DB.insertNewState('2024-06-23T14:56:59.774Z',10.2,10.5)
+DB.insertNewState('2024-06-24T14:56:59.774Z',10.3,10.6)
 DB.getEstados()
 DB.closeConexion()
 #DB.getUnidadesMedida()

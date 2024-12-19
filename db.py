@@ -92,12 +92,13 @@ class Database:
             cur.close()
           except(Exception) as error:
               print(error)  
-          return (response)   
+          return response   
 
 DB = Database()     
 
 DB.insertNewState('2024-06-23T14:56:59.774Z',10.2,10.5)
 DB.getEstados()
+DB.closeConexion()
 #DB.getUnidadesMedida()
 #DB.getProductos()
 # DB.insertNewVendedor('Eliet','Barrantes','8726392A')

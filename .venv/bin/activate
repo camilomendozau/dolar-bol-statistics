@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/camilomen/Documentos/Portafolio/Dolar-bol-statistics/.venv"
+VIRTUAL_ENV="/home/camilomen/Documentos/Dolar-bol-statistics/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

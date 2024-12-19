@@ -7,7 +7,7 @@ from decouple import config
 class Database:
      def __init__(self):
         self.conexion = None
-        #self.connect()
+        self.connect()
 
      def connect(self):   
         try:
@@ -228,7 +228,7 @@ class Database:
    #       return response 
      
 
-#DB = Database()     
+DB = Database()     
 #DB.getTareas()
 #DB.getUnidadesMedida()
 #DB.getProductos()

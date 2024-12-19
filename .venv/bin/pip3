@@ -1,4 +1,4 @@
-#!/home/camilomen/Documentos/Portafolio/Dolar-bol-statistics/.venv/bin/python3
+#!/home/camilomen/Documentos/Dolar-bol-statistics/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

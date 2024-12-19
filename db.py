@@ -84,7 +84,7 @@ class Database:
      def insertNewState(self,timestamp,compra,venta):
           try:                
             cur = self.conexion.cursor()         
-            query = f"""INSERT INTO public.estado(fechahora,compra,venta)VALUES({timestamp},{compra},{venta})"""
+            query = f"""INSERT INTO public.estado(fechahora,compra,venta)VALUES('{timestamp}',{compra},{venta})"""
             cur.execute(query)
             self.conexion.commit()
             response = cur.fetchone()

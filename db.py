@@ -33,17 +33,17 @@ class Database:
                 self.conexion.close()
                 print('Conexión finalizada.')
 
-     def getUnidadesMedida(self):
+     def getEstados(self):
          try:
             #response = ''
             cur = self.conexion.cursor()      
-            query = f"""SELECT public."getunidadesmedida"()"""
+            query = "SELECT public.estado"
             cur.execute(query)
             response = cur.fetchall() 
             if len(response) > 0:
                print(response)
             else:
-               print("No hay clientes en la DB")
+               print("No hay datos en la DB")
             cur.close()
          except(Exception) as error:
             print(error)
@@ -60,19 +60,7 @@ class Database:
             cur.close()
          except(Exception) as error:
             print(error)
-         return response[0]  
-
-     def getVendedores(self):
-         try:
-            cur = self.conexion.cursor()      
-            query = f"""SELECT public."getvendedores"()"""
-            cur.execute(query)
-            response = cur.fetchall() 
-            # print(response[0])
-            cur.close()
-         except(Exception) as error:
-            print(error)
-         return response               
+         return response[0]               
             
    #   def verificarLogin(self,username:str,psw:str):
    #        try:    
@@ -117,119 +105,9 @@ class Database:
           except(Exception) as error:
               print(error)  
           return (response)   
-     
-     def insertNewCliente(self,firstName:str,lastName:str,carnetIdentidad:str):
-          try:                
-            cur = self.conexion.cursor()         
-            query = f"""SELECT public."insertNewCliente"('{firstName}','{lastName}','{carnetIdentidad}')"""
-            cur.execute(query)
-            self.conexion.commit()
-            response = cur.fetchone()
-            print(response)
-            cur.close()
-          except(Exception) as error:
-              print(error)  
-          return (response)   
-     
-   #   def insertNewLaptop(self,serialNum:str,marca:str,modelo:str,sistemaOperativo:str,fechaAdquisicion:str,descripcion:int,estado:str,fileLink:str):
-   #        try:                
-   #          if fileLink != '':
-   #             drawing = open(fileLink,'rb').read()
-   #          else:
-   #             drawing = None
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT public."insertNewLaptop"('{serialNum}','{marca}','{modelo}','{sistemaOperativo}','{fechaAdquisicion}','{drawing}','{descripcion}','{estado}')"""
-   #          cur.execute(query)
-   #          self.conexion.commit()
-   #          response = cur.fetchone()
-   #          #print(response)
-   #          cur.close()   
-
-   #        except(Exception) as error:
-   #          print(error)  
-   #        return (response)  
-     
-   #   def getSONames(self):
-   #        try:
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT public."getSONames"()"""
-   #          cur.execute(query)
-   #          response = cur.fetchall()
-   #          # print(type(response))
-   #          cur.close()
-   #        except(Exception) as error:
-   #          print(error)
-   #        return response  
-     
-   #   def getMarcasNames(self):
-   #        try:
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT public."getMarcasLaptopsNames"()"""
-   #          cur.execute(query)
-   #          response = cur.fetchall() 
-   #          #print(response)
-   #          cur.close()
-   #        except(Exception) as error:
-   #          print(error)
-   #        return response  
-     
-   #   def getRolesNames(self):
-   #       try:
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT adm."getRolNames"()"""
-   #          cur.execute(query)
-   #          response = cur.fetchall() 
-   #          #print(response)
-   #          cur.close()
-   #       except(Exception) as error:
-   #          print(error)
-   #       return response 
-     
-   #   def createNewUser(self,username:str,password:str,rol:str):
-   #       try:
-   #          #response = ''
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT adm."createNewUser"('{username}','{password}','{rol}')"""
-   #          cur.execute(query)
-   #          self.conexion.commit()
-   #          response = cur.fetchone() 
-   #          #print(response)
-   #          cur.close()
-   #       except(Exception) as error:
-   #          print(error)
-   #       return response 
-     
-   #   def deleteUser(self,username:str):
-   #       try:
-   #          #response = ''
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT adm."deleteUserByName"('{username}')"""
-   #          cur.execute(query)
-   #          self.conexion.commit()
-   #          response = cur.fetchone() 
-   #          #print(response.deleteUserByName)
-   #          cur.close()
-   #       except(Exception) as error:
-   #          print(error)
-   #       return response.deleteUserByName 
-         
-     
-   #   def getUsernames(self):
-   #       try:
-   #          #response = ''
-   #          cur = self.conexion.cursor()         
-   #          query = f"""SELECT adm."getUserNames"()"""
-   #          cur.execute(query)
-   #          response = cur.fetchall() 
-   #          #print(response)
-   #          cur.close()
-   #       except(Exception) as error:
-   #          print(error)
-   #       return response 
-     
 
 DB = Database()     
-#DB.getTareas()
+DB.getEstados()
 #DB.getUnidadesMedida()
 #DB.getProductos()
 # DB.insertNewVendedor('Eliet','Barrantes','8726392A')

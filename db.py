@@ -37,7 +37,7 @@ class Database:
          try:
             #response = ''
             cur = self.conexion.cursor()      
-            query = "SELECT public.estado"
+            query = "SELECT * FROM public.estado"
             cur.execute(query)
             response = cur.fetchall() 
             if len(response) > 0:

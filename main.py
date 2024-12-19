@@ -1,35 +1,31 @@
 import requests
-#from bs4 import BeautifulSoup
-from datetime import datetime
+from db import Database
 import configparser
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-daysElapsed = int(config['DEFAULT']['DAYSELAPSED'])
-
+cantidadEstados = int(config['DEFAULT']['estadossubidos'])
+DB = Database()
 response = requests.get("https://dolarbo.com/exchange-rates.json")
 
-def saveNewElapsedDaysValue(updatedDays):
-    config['DEFAULT']['DAYSELAPSED'] = str(len(dolardayslist))
+def saveNewElapsedDaysValue():
+    config['DEFAULT']['estadossubidos'] = str(len(dolarEstadosList))
     with open('config.ini', 'w') as configfile:
         config.write(configfile)
 
 
 if response.status_code == 200:
-    dolardayslist = response.json()[0]["history"]
-    for dolarday in dolardayslist:
-        print(dolarday['timestamp'])
-        #print(datetime.strptime(dolarday['timestamp'],"%Y-%m-%dT%H:%M:%SZ"))
+    dolarEstadosList = response.json()[0]["history"]
+    # for dolarday in dolardayslist:
+    #     print(dolarday['timestamp'])
+    #     #print(datetime.strptime(dolarday['timestamp'],"%Y-%m-%dT%H:%M:%SZ"))
     
-    if daysElapsed < len(dolardayslist):
-        
-        daysToUpdate = len(dolardayslist) - daysElapsed
-        saveNewElapsedDaysValue(daysElapsed)
-        #print(daysElapsed)
-    # for day in dolardayslist:
-    #     print(day["timestamp"])
-    #     print(day["buy"])
-    #     print(day["sell"])
+    if cantidadEstados < len(dolarEstadosList):     
+        estadosToUpdate = len(dolarEstadosList) - cantidadEstados
+        for i,estado in enumerate(dolarEstadosList[-int(estadosToUpdate):]):
+            DB.insertNewState(estado['timestamp'],estado['buy'],estado['sell'])
+            print(i,estado)
+        saveNewElapsedDaysValue()
 
 
 

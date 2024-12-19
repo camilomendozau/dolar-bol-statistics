@@ -43,8 +43,7 @@ class Database:
             cur.close()
          except(Exception) as error:
             print(error)
-         return response 
-                      
+         return response   
             
    #   def verificarLogin(self,username:str,psw:str):
    #        try:    
@@ -78,7 +77,8 @@ class Database:
    #        return response  
      
      def insertNewState(self,timestamp,compra,venta):
-         try:                
+         try:        
+            response = ''        
             cur = self.conexion.cursor()         
             query = f"""INSERT INTO public.estado(fechahora,compra,venta)VALUES('{timestamp}',{compra},{venta})"""
             cur.execute(query)
@@ -87,13 +87,13 @@ class Database:
             print(response)
             cur.close()
          except(Exception) as error:
-              print(error)  
-          #return response   
+            print(error)  
+         return response   
 
-DB = Database()     
-DB.insertNewState('2024-06-24T14:56:59.774Z',10.3,10.6)
-DB.getEstados()
-DB.closeConexion()
+# DB = Database()     
+# DB.insertNewState('2024-06-24T14:56:59.774Z',10.3,10.6)
+# DB.getEstados()
+# DB.closeConexion()
 #DB.getUnidadesMedida()
 #DB.getProductos()
 # DB.insertNewVendedor('Eliet','Barrantes','8726392A')

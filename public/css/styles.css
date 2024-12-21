@@ -11,7 +11,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(22, 21, 21, 0.815);
+    background-color: #111217;
 }
 .price-numeral-grafic{
     border: 2px rgb(168, 9, 9) solid;

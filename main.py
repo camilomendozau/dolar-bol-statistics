@@ -2,10 +2,6 @@ import requests,time
 from db import Database
 import configparser
 
-
-
-#response = requests.get("https://dolarbo.com/exchange-rates.json")
-
 def saveNewElapsedDaysValue(dolarEstadosList):
     config['DEFAULT']['estadossubidos'] = str(len(dolarEstadosList))
     with open('config.ini', 'w') as configfile:
@@ -13,6 +9,7 @@ def saveNewElapsedDaysValue(dolarEstadosList):
 
 def fetch_data_from_api():
     try:
+        cantidadEstados = int(config['DEFAULT']['estadossubidos'])
         response = requests.get('https://dolarbo.com/exchange-rates.json')
         if response.status_code == 200:
             DB = Database()
@@ -37,5 +34,4 @@ def main():
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('config.ini')
-    cantidadEstados = int(config['DEFAULT']['estadossubidos'])
     main()

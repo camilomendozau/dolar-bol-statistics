@@ -12,15 +12,15 @@ def fetch_data_from_api():
         cantidadEstados = int(config['DEFAULT']['estadossubidos'])
         response = requests.get('https://dolarbo.com/exchange-rates.json')
         if response.status_code == 200:
-            DB = Database()
             dolarEstadosList = response.json()[0]["history"]
             if cantidadEstados < len(dolarEstadosList):
+                DB = Database()
                 estadosToUpdate = len(dolarEstadosList) - cantidadEstados
                 for i, estado in enumerate(dolarEstadosList[-int(estadosToUpdate):]):
                     DB.insertNewState(estado['timestamp'], estado['buy'], estado['sell'])
                     print(i, estado)
                 saveNewElapsedDaysValue(dolarEstadosList)
-            DB.closeConexion()
+                DB.closeConexion()
         else:
             print(f"Error en la consulta: {response.status_code}")
     except Exception as e:

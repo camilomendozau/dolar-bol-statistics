@@ -12,14 +12,14 @@ class Database:
      def connect(self):   
         try:
             # Conexion al servidor de PostgreSQL
-            print('Conectando a la base de datos PostgreSQL...')
+            #print('Conectando a la base de datos PostgreSQL...')
             self.conexion = pgdb.connect(
                 host=config('PGSQL_HOST'),
                 database=config('PGSQL_DATABASE'), 
                 user=config('PGSQL_USER'), 
                 password=config('PGSQL_PASSWORD')
             )
-            print('Conectado exitosamente a PostgreSQL!!!')
+            #print('Conectado exitosamente a PostgreSQL!!!')
             return self.conexion
         except (Exception) as error:
             print(error)

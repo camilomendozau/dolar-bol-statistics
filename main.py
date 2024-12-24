@@ -14,6 +14,7 @@ def fetch_data_from_api():
         if response.status_code == 200:
             dolarEstadosList = response.json()[0]["history"]
             if cantidadEstados < len(dolarEstadosList):
+                print("Actualizando estado de precio del dolar...")
                 DB = Database()
                 estadosToUpdate = len(dolarEstadosList) - cantidadEstados
                 for i, estado in enumerate(dolarEstadosList[-int(estadosToUpdate):]):
@@ -21,6 +22,7 @@ def fetch_data_from_api():
                     print(i, estado)
                 saveNewElapsedDaysValue(dolarEstadosList)
                 DB.closeConexion()
+                print("Estado de precio del dolar actualizado correctamente.")
         else:
             print(f"Error en la consulta: {response.status_code}")
     except Exception as e:
